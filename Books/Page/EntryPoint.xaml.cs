@@ -1,18 +1,8 @@
 ﻿using Books.DataOperation;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Books
 {
@@ -21,14 +11,20 @@ namespace Books
     /// </summary>
     public partial class EntryPoint : Window
     {
-        private string dataBasePath = "Base.mbb";
         private Dictionary<string, bool> authorisationMethodsDict = new Dictionary<string, bool>();
         private RadioButton authoriseMethod;
+        private UserController controller;
 
         public EntryPoint()
         {
             InitializeComponent();
             FillAuthorisationMethodsDict();
+            try { controller = new UserController(); }
+            catch (ArgumentNullException e)
+            {
+                MessageBoxResult result = MessageBox.Show("Sorry, smth wrong with " + e.ParamName + ".", "Oups!", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                if (result == MessageBoxResult.Cancel) Close();
+            }
         }
 
         private void FillAuthorisationMethodsDict()
@@ -39,21 +35,18 @@ namespace Books
 
         private void ButtonLetMeIn_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckDataBaseAccessability())
+            switch (authoriseMethod.Name)
             {
-                switch (authoriseMethod.Name)
-                {
-                    case "RadioButtonLogin":
-                        {
-                            if (!LogIn()) MessageBox.Show("Sorry, smth goes wrong while we tried ypu to log in.", "Oups!", MessageBoxButton.OK, MessageBoxImage.Error);
-                            break;
-                        }
-                    case "RadioButtonRegistration":
-                        {
-                            if (!Registrate()) MessageBox.Show("Sorry, smth goes wrong while we tried to registrate you.", "Oups!", MessageBoxButton.OK, MessageBoxImage.Error);
-                            break;
-                        }
-                }
+                case "RadioButtonLogin":
+                    {
+                        LogIn();
+                        break;
+                    }
+                case "RadioButtonRegistration":
+                    {
+                        Registrate();
+                        break;
+                    }
             }
         }
 
@@ -64,23 +57,16 @@ namespace Books
 
         private bool Registrate()
         {
-            if (!UserController.IsConsists(TextBoxLogin.Text, PaswordBoxLogin.Password))
-            {
-                UserController.AddNewUser(TextBoxLogin.Text, PaswordBoxLogin.Password);
-                OpenMainWindow();
-                return true;
-            }
-            return false;
+            if (!controller.AddNewUser(TextBoxLogin.Text, PaswordBoxLogin.Password)) return false;
+            OpenMainWindow();
+            return true;
         }
 
         private bool LogIn()
         {
-            if (UserController.IsConsists(TextBoxLogin.Text, PaswordBoxLogin.Password))
-            {
-                OpenMainWindow();
-                return true;
-            }
-            return false;
+            if (controller.CanLogin(TextBoxLogin.Text, PaswordBoxLogin.Password)) return false;
+            OpenMainWindow();
+            return true;
         }
 
         private void OpenMainWindow()
@@ -88,17 +74,6 @@ namespace Books
             Window window = new MainWindow();
             window.Show();
             Close();
-        }
-
-        private bool CheckDataBaseAccessability()
-        {
-            if (!File.Exists(dataBasePath))
-            {
-                MessageBoxResult answer = MessageBox.Show("Smth goes wrong with our database. Sorry for that troble :(", "Ouch...", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-                if (answer == MessageBoxResult.Cancel) Close();
-                else return false;
-            }
-            return true;
         }
     }
 }
