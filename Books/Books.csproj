@@ -57,11 +57,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Page\EntryPoint.xaml">
+    <Page Include="View\Book.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Page\MainWindow.xaml">
+    <Page Include="View\BookShelfContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EntryPoint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -69,13 +77,25 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataOperation\BookController.cs" />
     <Compile Include="DataOperation\Serialiser.cs" />
     <Compile Include="DataOperation\UserController.cs" />
+    <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\BookShelf.cs" />
+    <Compile Include="Model\BookShelfCollection.cs" />
+    <Compile Include="Model\Review.cs" />
+    <Compile Include="Model\ReviewCollection.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Page\EntryPoint.xaml.cs">
+    <Compile Include="View\Book.xaml.cs">
+      <DependentUpon>Book.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BookShelfContent.xaml.cs">
+      <DependentUpon>BookShelfContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EntryPoint.xaml.cs">
       <DependentUpon>EntryPoint.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

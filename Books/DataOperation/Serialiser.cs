@@ -8,7 +8,6 @@ namespace Books.DataOperation
         {
             return JsonConvert.SerializeObject(smth);
         }
-
         public static T Deserialize<T>(string smth)
         {
             return JsonConvert.DeserializeObject<T>(smth);

@@ -22,6 +22,12 @@ namespace Books.DataOperation
             catch { }
         }
 
+        public User GetUser(string login)
+        {
+            if (!IsExists(login)) return null;
+            return users[login];
+        }
+
         public bool CanLogin(string login, string pasword)
         {
             if (!IsExists(login)) return false;
@@ -38,7 +44,7 @@ namespace Books.DataOperation
         private void AddUserData(string login, string pasword)
         {
             if (users == null) users = new Dictionary<string, User>();
-            users.Add(login, new User(login, GetHash(pasword)));
+            users.Add(login, new User(login, GetHash(pasword), new BookShelfCollection()));
             string content = Serialiser.Serialize(users);
             File.WriteAllText(dataBasePath, content);
         }

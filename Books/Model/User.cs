@@ -4,12 +4,19 @@
     {
         public string Login { get; set; }
         public byte[] Pasword { get; set; }
-        public string Role { get; set; } = "user";
+        public BookShelfCollection ShelfCollection { get; private set; }
+        public string Role { get; private set; }
+        public string Info { get; set; }
 
-        public User(string login, byte[] pasword)
+        public User() { }
+
+        public User(string login, byte[] pasword, BookShelfCollection shelfCollection, string info = "", string role = "user")
         {
             Login = login;
             Pasword = pasword;
+            ShelfCollection = shelfCollection;
+            Info = info;
+            Role = role;
         }
     }
 }

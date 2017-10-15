@@ -1,4 +1,5 @@
 ﻿using Books.DataOperation;
+using Books.Model;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -57,21 +58,21 @@ namespace Books
 
         private bool Registrate()
         {
-            if (!controller.AddNewUser(TextBoxLogin.Text, PaswordBoxLogin.Password)) return false;
-            OpenMainWindow();
+            if (!controller.AddNewUser(TextBoxRegistration.Text, PaswordBoxRegistration.Password)) return false;
+            OpenMainWindow(controller.GetUser(TextBoxRegistration.Text));
             return true;
         }
 
         private bool LogIn()
         {
-            if (controller.CanLogin(TextBoxLogin.Text, PaswordBoxLogin.Password)) return false;
-            OpenMainWindow();
+            if (!controller.CanLogin(TextBoxLogin.Text, PaswordBoxLogin.Password)) return false;
+            OpenMainWindow(controller.GetUser(TextBoxLogin.Text));
             return true;
         }
 
-        private void OpenMainWindow()
+        private void OpenMainWindow(User user)
         {
-            Window window = new MainWindow();
+            Window window = new MainWindow(user);
             window.Show();
             Close();
         }
