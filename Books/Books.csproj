@@ -57,7 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\Book.xaml">
+    <Page Include="View\BookBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BookReviews.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,12 +86,13 @@
     <Compile Include="DataOperation\UserController.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\BookShelf.cs" />
-    <Compile Include="Model\BookShelfCollection.cs" />
     <Compile Include="Model\Review.cs" />
-    <Compile Include="Model\ReviewCollection.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="View\Book.xaml.cs">
-      <DependentUpon>Book.xaml</DependentUpon>
+    <Compile Include="View\BookBase.xaml.cs">
+      <DependentUpon>BookBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BookReviews.xaml.cs">
+      <DependentUpon>BookReviews.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BookShelfContent.xaml.cs">
       <DependentUpon>BookShelfContent.xaml</DependentUpon>

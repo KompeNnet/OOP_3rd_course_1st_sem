@@ -1,0 +1,26 @@
+﻿<Window x:Class="Books.View.BookBase" ResizeMode="NoResize"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Books.View"
+        mc:Ignorable="d"
+        Title="BookBase" Height="398.959" Width="552.206" Background="#FFFFF4D6" MouseEnter="Window_MouseEnter">
+    <Grid>
+        <ListView x:Name="ListViewBookBase" Margin="10,10,0,39" FontSize="14" FontFamily="Script MT Bold" BorderBrush="#FFB97165" Foreground="#FF611919" HorizontalAlignment="Left" Width="323" SelectionChanged="ListViewBookBase_SelectionChanged" MouseDoubleClick="ListViewBookBase_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="216" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Author" Width="90" DisplayMemberBinding="{Binding Author}"/>
+                    <GridViewColumn Width="0" DisplayMemberBinding="{Binding Id}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="ButtonAddBook" Content="Add books" HorizontalAlignment="Left" Height="24" Margin="86,336,0,0" VerticalAlignment="Top" Width="83" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonAddBook_Click"/>
+        <Button x:Name="ButtonAddRequest" Content="Add request" HorizontalAlignment="Left" Height="24" Margin="174,336,0,0" VerticalAlignment="Top" Width="83" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonAddRequest_Click"/>
+        <TextBlock x:Name="TextBlockName" Height="26" Margin="338,10,10,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" FontSize="22" FontFamily="Script MT Bold" Foreground="#FF611919" TextAlignment="Right"/>
+        <TextBlock x:Name="TextBlockAuthor" Height="21" Margin="338,41,10,0" TextWrapping="Wrap" Text="Author" VerticalAlignment="Top" FontSize="18" FontFamily="Script MT Bold" Foreground="#FF611919" TextAlignment="Right"/>
+        <TextBlock x:Name="TextBlockInfo" Height="235" Margin="338,96,10,0" TextWrapping="Wrap" Text="Info" VerticalAlignment="Top" FontSize="14" FontFamily="Script MT Bold" Foreground="#FF611919"/>
+
+    </Grid>
+</Window>

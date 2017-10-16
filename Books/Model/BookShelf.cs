@@ -6,42 +6,54 @@ namespace Books.Model
     {
         public string Name { get; set; }
         public int Count { get; private set; }
-        private List<Book> Content { get; set; }
+        public List<string> Content { get; set; } = new List<string>();
+        private bool Opened;
 
         public BookShelf() { }
 
-        public BookShelf(string name, List<Book> content = null)
+        public BookShelf(string name, List<string> content = null)
         {
             Name = name;
             Content = content;
             if (Content != null) Count = Content.Count;
+            Opened = false;
         }
 
-        public bool AddBook(Book book)
+        public bool IsOpened()
         {
-            if (Content.Contains(book)) return false;
-            Content.Add(book);
+            return Opened;
+        }
+
+        public void BookShelfOpened()
+        {
+            Opened = true;
+        }
+
+        public void BookShelfClosed()
+        {
+            Opened = false;
+        }
+
+        public bool AddBook(string id)
+        {
+            if (Content.Contains(id)) return false;
+            Content.Add(id);
             Count++;
             return true;
         }
 
-        public bool RemoveBook(Book book)
+        public bool RemoveBook(string id)
         {
-            if (!Content.Contains(book)) return false;
-            Content.Remove(book);
-            Count++;
+            if (!Content.Contains(id)) return false;
+            Content.Remove(id);
+            Count--;
             return true;
         }
 
         public void ClearBookShelfContent()
         {
-            Content = new List<Book>();
+            Content = new List<string>();
             Count = 0;
-        }
-
-        public List<Book> GetBookList()
-        {
-            return Content;
         }
     }
 }

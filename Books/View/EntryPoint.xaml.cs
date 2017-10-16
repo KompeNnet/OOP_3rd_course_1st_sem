@@ -2,6 +2,7 @@
 using Books.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,13 +15,17 @@ namespace Books
     {
         private Dictionary<string, bool> authorisationMethodsDict = new Dictionary<string, bool>();
         private RadioButton authoriseMethod;
-        private UserController controller;
 
         public EntryPoint()
         {
             InitializeComponent();
             FillAuthorisationMethodsDict();
-            try { controller = new UserController(); }
+            LoadUserData();
+        }
+
+        private void LoadUserData()
+        {
+            try { UserController.LoadUserData(); }
             catch (ArgumentNullException e)
             {
                 MessageBoxResult result = MessageBox.Show("Sorry, smth wrong with " + e.ParamName + ".", "Oups!", MessageBoxButton.OKCancel, MessageBoxImage.Error);
@@ -58,15 +63,15 @@ namespace Books
 
         private bool Registrate()
         {
-            if (!controller.AddNewUser(TextBoxRegistration.Text, PaswordBoxRegistration.Password)) return false;
-            OpenMainWindow(controller.GetUser(TextBoxRegistration.Text));
+            if (!UserController.AddNewUser(TextBoxRegistration.Text, PaswordBoxRegistration.Password)) return false;
+            OpenMainWindow(UserController.GetUser(TextBoxRegistration.Text));
             return true;
         }
 
         private bool LogIn()
         {
-            if (!controller.CanLogin(TextBoxLogin.Text, PaswordBoxLogin.Password)) return false;
-            OpenMainWindow(controller.GetUser(TextBoxLogin.Text));
+            if (!UserController.CanLogin(TextBoxLogin.Text, PaswordBoxLogin.Password)) return false;
+            OpenMainWindow(UserController.GetUser(TextBoxLogin.Text));
             return true;
         }
 

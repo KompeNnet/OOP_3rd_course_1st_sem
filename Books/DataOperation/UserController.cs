@@ -9,12 +9,12 @@ using System.Windows;
 
 namespace Books.DataOperation
 {
-    public class UserController
+    public static class UserController
     {
-        private Dictionary<string, User> users;
-        private string dataBasePath = "Base.mbb";
+        private static Dictionary<string, User> users;
+        private static string dataBasePath = "Base.mbb";
 
-        public UserController()
+        public static void LoadUserData()
         {
             if (!CheckDataBaseAccessability()) throw new ArgumentNullException("DataBase");
             string data = File.ReadAllText(dataBasePath);
@@ -22,52 +22,56 @@ namespace Books.DataOperation
             catch { }
         }
 
-        public User GetUser(string login)
+        public static void SaveUserData()
+        {
+            string content = Serialiser.Serialize(users);
+            File.WriteAllText(dataBasePath, content);
+        }
+
+        public static User GetUser(string login)
         {
             if (!IsExists(login)) return null;
             return users[login];
         }
 
-        public bool CanLogin(string login, string pasword)
+        public static bool CanLogin(string login, string pasword)
         {
             if (!IsExists(login)) return false;
             return CheckPaswordCorrectness(pasword, users[login].Pasword);
         }
 
-        public bool AddNewUser(string login, string pasword)
+        public static bool AddNewUser(string login, string pasword)
         {
             if (IsExists(login) || (login == "Login" && pasword == "password")) return false;
             AddUserData(login, pasword);
             return true;
         }
 
-        private void AddUserData(string login, string pasword)
+        private static void AddUserData(string login, string pasword)
         {
             if (users == null) users = new Dictionary<string, User>();
-            users.Add(login, new User(login, GetHash(pasword), new BookShelfCollection()));
-            string content = Serialiser.Serialize(users);
-            File.WriteAllText(dataBasePath, content);
+            users.Add(login, new User(login, GetHash(pasword), new Dictionary<string, BookShelf>() { { "My first bookshelf", new BookShelf("My first bookshelf") } }));
         }
 
-        private bool IsExists(string login)
+        private static bool IsExists(string login)
         {
             try { return users.ContainsKey(login); }
             catch { return false; }
         }
 
-        private byte[] GetHash(string pasword)
+        private static byte[] GetHash(string pasword)
         {
             SHA256Managed sha = new SHA256Managed();
             byte[] hash = sha.ComputeHash(Encoding.UTF8.GetBytes(pasword));
             return hash;
         }
 
-        private bool CheckPaswordCorrectness(string pasword, byte[] paswordInBase)
+        private static bool CheckPaswordCorrectness(string pasword, byte[] paswordInBase)
         {
             return Enumerable.SequenceEqual(GetHash(pasword), paswordInBase);
         }
 
-        private bool CheckDataBaseAccessability()
+        private static bool CheckDataBaseAccessability()
         {
             if (!File.Exists(dataBasePath))
             {

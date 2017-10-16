@@ -1,18 +1,11 @@
-﻿using Books.Model;
-using System;
+﻿using Books.DataOperation;
+using Books.Model;
+using Books.View;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Books
 {
@@ -40,7 +33,8 @@ namespace Books
         private void LoadBookShelfCollection()
         {
             ListViewBookShelfCollection.Items.Clear();
-            foreach (BookShelf b in user.ShelfCollection.GetBookShelfList())
+            if (user.ShelfCollection != null)
+            foreach (BookShelf b in user.ShelfCollection.Values)
                 ListViewBookShelfCollection.Items.Add(b);
         }
 
@@ -48,7 +42,7 @@ namespace Books
         {
             try
             {
-                BookShelf selectedShelf = user.ShelfCollection.GetBookShelfList().ElementAt(((ListView)sender).SelectedIndex);
+                BookShelf selectedShelf = user.ShelfCollection.ElementAt(((ListView)sender).SelectedIndex).Value;
                 TextBoxBookShelfName.Text = selectedShelf.Name;
             } catch { }
         }
@@ -63,9 +57,9 @@ namespace Books
         {
             if (ListViewBookShelfCollection.Items.Count <= 0 || ListViewBookShelfCollection.SelectedItems.Count <= 0) return;
             if (TextBoxBookShelfName.Text == "") return;
-            BookShelf currentShelf = user.ShelfCollection.GetBookShelfList().ElementAt(ListViewBookShelfCollection.SelectedIndex);
-            user.ShelfCollection.RemoveBookShelf(currentShelf);
-            if (NewBookshelf(TextBoxBookShelfName.Text, currentShelf.GetBookList()))
+            BookShelf currentShelf = user.ShelfCollection.ElementAt(ListViewBookShelfCollection.SelectedIndex).Value;
+            user.ShelfCollection.Remove(currentShelf.Name);
+            if (NewBookshelf(TextBoxBookShelfName.Text, currentShelf.Content))
                 LoadBookShelfCollection();
         }
 
@@ -73,10 +67,10 @@ namespace Books
         {
             foreach (BookShelf item in ListViewBookShelfCollection.SelectedItems)
             {
-                foreach (BookShelf b in user.ShelfCollection.GetBookShelfList())
+                foreach (BookShelf b in user.ShelfCollection.Values)
                     if (b.Name == item.Name)
                     {
-                        user.ShelfCollection.RemoveBookShelf(b);
+                        user.ShelfCollection.Remove(b.Name);
                         break;
                     }
             }
@@ -88,12 +82,33 @@ namespace Books
             user.Info = ((TextBox)sender).Text;
         }
 
-        private bool NewBookshelf(string name, List<Book> content = null)
+        private bool NewBookshelf(string name, List<string> content = null)
         {
-            foreach (BookShelf b in user.ShelfCollection.GetBookShelfList())
-                if (b.Name == TextBoxBookShelfName.Text) return false;
-            if (user.ShelfCollection.AddBookShelf(new BookShelf(name, content))) return true;
+            if (user.ShelfCollection.ContainsKey(name)) return false;
+            user.ShelfCollection.Add(name, new BookShelf(name, content));
+            LoadBookShelfCollection();
             return false;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            UserController.SaveUserData();
+        }
+
+        private void ListViewBookShelfCollection_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            foreach (BookShelf item in ListViewBookShelfCollection.SelectedItems)
+            {
+                if (user.ShelfCollection[item.Name].IsOpened()) continue;
+                Window window = new BookShelfContent(user.ShelfCollection[item.Name], user.Login);
+                window.Show();
+                user.ShelfCollection[item.Name].BookShelfOpened();
+            }
+        }
+
+        private void Window_MouseEnter(object sender, MouseEventArgs e)
+        {
+            LoadBookShelfCollection();
         }
     }
 }

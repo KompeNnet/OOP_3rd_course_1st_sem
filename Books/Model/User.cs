@@ -1,16 +1,18 @@
-﻿namespace Books.Model
+﻿using System.Collections.Generic;
+
+namespace Books.Model
 {
     public class User
     {
         public string Login { get; set; }
         public byte[] Pasword { get; set; }
-        public BookShelfCollection ShelfCollection { get; private set; }
-        public string Role { get; private set; }
+        public Dictionary<string, BookShelf> ShelfCollection { get; set; }
+        public string Role { get; set; }
         public string Info { get; set; }
 
         public User() { }
 
-        public User(string login, byte[] pasword, BookShelfCollection shelfCollection, string info = "", string role = "user")
+        public User(string login, byte[] pasword, Dictionary<string, BookShelf> shelfCollection, string info = "", string role = "user")
         {
             Login = login;
             Pasword = pasword;
