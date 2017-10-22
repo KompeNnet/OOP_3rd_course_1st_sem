@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Books.DataOperation
@@ -11,7 +10,7 @@ namespace Books.DataOperation
     public static class BookController
     {
         private static Dictionary<string, Book> bookBase;
-        private static string dataBasePath = "BookBase.mbb";
+        private const string dataBasePath = "BookBase.mbb";
 
         public static void LoadBookData()
         {

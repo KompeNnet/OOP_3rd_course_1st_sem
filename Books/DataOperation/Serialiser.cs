@@ -2,7 +2,7 @@
 
 namespace Books.DataOperation
 {
-    public class Serialiser
+    public static class Serialiser
     {
         public static string Serialize<T>(T smth)
         {

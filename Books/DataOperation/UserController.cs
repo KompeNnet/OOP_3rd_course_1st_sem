@@ -12,7 +12,7 @@ namespace Books.DataOperation
     public static class UserController
     {
         private static Dictionary<string, User> users;
-        private static string dataBasePath = "Base.mbb";
+        private const string dataBasePath = "Base.mbb";
 
         public static void LoadUserData()
         {

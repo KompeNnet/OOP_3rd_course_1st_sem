@@ -16,8 +16,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="ButtonAdd" Content="Add" HorizontalAlignment="Left" Height="24" Margin="86,311,0,0" VerticalAlignment="Top" Width="83" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonAdd_Click"/>
-        <Button x:Name="ButtonRemove" Content="Remove" HorizontalAlignment="Left" Height="24" Margin="174,311,0,0" VerticalAlignment="Top" Width="83" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonRemove_Click"/>
+        <Button x:Name="ButtonAdd" Content="Add" HorizontalAlignment="Left" Height="24" Margin="45,311,0,0" VerticalAlignment="Top" Width="83" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonAdd_Click"/>
+        <Button x:Name="ButtonRemove" Content="Remove" HorizontalAlignment="Left" Height="24" Margin="133,311,0,0" VerticalAlignment="Top" Width="83" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonRemove_Click"/>
+        <Button x:Name="ButtonClear" Content="Clear" HorizontalAlignment="Left" Height="24" Margin="221,311,0,0" VerticalAlignment="Top" Width="83" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonClear_Click"/>
         <TextBlock x:Name="TextBlockName" Height="26" Margin="338,10,10,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" FontSize="22" FontFamily="Script MT Bold" Foreground="#FF611919" TextAlignment="Right"/>
         <TextBlock x:Name="TextBlockAuthor" Height="21" Margin="338,41,10,0" TextWrapping="Wrap" Text="Author" VerticalAlignment="Top" FontSize="18" FontFamily="Script MT Bold" Foreground="#FF611919" TextAlignment="Right"/>
         <TextBlock x:Name="TextBlockInfo" Margin="338,96,10,10" TextWrapping="Wrap" Text="Info" FontSize="14" FontFamily="Script MT Bold" Foreground="#FF611919"/>

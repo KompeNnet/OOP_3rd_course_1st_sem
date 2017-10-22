@@ -2,6 +2,7 @@
 using Books.Model;
 using Books.View;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -90,7 +91,7 @@ namespace Books
             return false;
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             UserController.SaveUserData();
         }

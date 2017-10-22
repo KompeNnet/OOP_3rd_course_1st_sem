@@ -5,7 +5,7 @@ namespace Books.Model
     public class BookShelf
     {
         public string Name { get; set; }
-        public int Count { get; private set; }
+        public int Count { get; set; }
         public List<string> Content { get; set; } = new List<string>();
         private bool Opened;
 
