@@ -18,9 +18,9 @@
         </ListView>
         <Button x:Name="ButtonAddBook" Content="Add books" HorizontalAlignment="Left" Height="24" Margin="86,336,0,0" VerticalAlignment="Top" Width="83" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonAddBook_Click"/>
         <Button x:Name="ButtonAddRequest" Content="Add request" HorizontalAlignment="Left" Height="24" Margin="174,336,0,0" VerticalAlignment="Top" Width="83" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonAddRequest_Click"/>
-        <TextBlock x:Name="TextBlockName" Height="26" Margin="338,10,10,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" FontSize="22" FontFamily="Script MT Bold" Foreground="#FF611919" TextAlignment="Right"/>
-        <TextBlock x:Name="TextBlockAuthor" Height="21" Margin="338,41,10,0" TextWrapping="Wrap" Text="Author" VerticalAlignment="Top" FontSize="18" FontFamily="Script MT Bold" Foreground="#FF611919" TextAlignment="Right"/>
-        <TextBlock x:Name="TextBlockInfo" Height="235" Margin="338,96,10,0" TextWrapping="Wrap" Text="Info" VerticalAlignment="Top" FontSize="14" FontFamily="Script MT Bold" Foreground="#FF611919"/>
+        <TextBlock x:Name="TextBlockName" Height="26" Margin="338,10,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="22" FontFamily="Script MT Bold" Foreground="#FF611919" TextAlignment="Right"/>
+        <TextBlock x:Name="TextBlockAuthor" Height="21" Margin="338,41,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="18" FontFamily="Script MT Bold" Foreground="#FF611919" TextAlignment="Right"/>
+        <TextBlock x:Name="TextBlockInfo" Height="235" Margin="338,96,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="14" FontFamily="Script MT Bold" Foreground="#FF611919"/>
 
     </Grid>
 </Window>

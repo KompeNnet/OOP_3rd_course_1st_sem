@@ -1,5 +1,6 @@
 ﻿using Books.DataOperation;
 using Books.Model;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,16 +20,23 @@ namespace Books.View
         {
             InitializeComponent();
             this.currentShelf = currentShelf;
-            BookController.LoadBookData();
             CurrentUser = user;
             LoadBooks();
         }
 
         private void LoadBooks()
         {
-            ListViewBookBase.Items.Clear();
-            if (currentShelf.Content == null) currentShelf.Content = new List<string>();
-            foreach (Book b in BookController.GetBookBase()) ListViewBookBase.Items.Add(b);
+            try
+            {
+                ListViewBookBase.Items.Clear();
+                if (currentShelf.Content == null) currentShelf.Content = new List<string>();
+                foreach (Book b in BookController.GetBookBase()) ListViewBookBase.Items.Add(b);
+            }
+            catch (ArgumentNullException e)
+            {
+                MessageBoxResult result = MessageBox.Show("Sorry, smth wrong with " + e.ParamName + ".", "Oups!", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                if (result == MessageBoxResult.Cancel) Close();
+            }
         }
 
         private void ButtonAddBook_Click(object sender, RoutedEventArgs e)
@@ -55,10 +63,18 @@ namespace Books.View
 
         private void ListViewBookBase_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            foreach (Book b in ListViewBookBase.SelectedItems)
+            try
             {
-                Window window = new BookReviews(BookController.GetBook(b.Id), CurrentUser);
-                window.Show();
+                foreach (Book b in ListViewBookBase.SelectedItems)
+                {
+                    Window window = new BookReviews(BookController.GetBook(b.Id), CurrentUser);
+                    window.Show();
+                }
+            }
+            catch (ArgumentNullException ae)
+            {
+                MessageBoxResult result = MessageBox.Show("Sorry, smth wrong with " + ae.ParamName + ".", "Oups!", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                if (result == MessageBoxResult.Cancel) Close();
             }
         }
 

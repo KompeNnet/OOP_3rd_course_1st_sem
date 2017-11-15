@@ -8,13 +8,11 @@
         Title="BookLovers" Height="241" Width="394" BorderBrush="Black" FontFamily="Script MT Bold">
     <Grid Background="#FFFFF4D6">
         <TextBlock x:Name="TextBlockWelcome" HorizontalAlignment="Left" Margin="60,10,0,0" TextWrapping="Wrap" Text="Welcome to BookLovers!" VerticalAlignment="Top" FontFamily="Script MT Bold" FontSize="26" RenderTransformOrigin="0.423,0.592" Foreground="#FF611919"/>
-        <RadioButton x:Name="RadioButtonRegistration" Content="Register here" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" FontFamily="Script MT Bold" FontSize="15" BorderBrush="#FFB97165" Foreground="#FF611919" Checked="RadioButton_Checked" IsChecked="True"/>
-        <RadioButton x:Name="RadioButtonLogin" Content="Already have an account?" HorizontalAlignment="Left" Margin="198,68,0,0" VerticalAlignment="Top" FontFamily="Script MT Bold" FontSize="15" BorderBrush="#FFB97165" Foreground="#FF611919" Checked="RadioButton_Checked"/>
-        <TextBox x:Name="TextBoxRegistration" HorizontalAlignment="Left" Height="23" Margin="10,88,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="171" FontFamily="Script MT Bold" FontSize="15" BorderBrush="#FFB97165" Foreground="#FF611919"/>
-        <PasswordBox x:Name="PaswordBoxRegistration" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="171" Password="Password" BorderBrush="#FFB97165" Foreground="#FF611919"/>
-        <TextBox x:Name="TextBoxLogin" HorizontalAlignment="Left" Height="23" Margin="198,87,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="171" FontFamily="Script MT Bold" FontSize="15" BorderBrush="#FFB97165" Foreground="#FF611919"/>
-        <PasswordBox x:Name="PaswordBoxLogin" HorizontalAlignment="Left" Margin="198,115,0,0" VerticalAlignment="Top" Width="171" Password="Password" BorderBrush="#FFB97165" Foreground="#FF611919"/>
-        <Button x:Name="ButtonLetMeIn" Content="Let me in!" HorizontalAlignment="Left" Height="30" Margin="104,150,0,0" VerticalAlignment="Top" Width="161" FontFamily="Script MT Bold" FontSize="18" Panel.ZIndex="10" Background="#FFF3E0BF" Click="ButtonLetMeIn_Click" BorderBrush="#FFB97165" Foreground="#FF611919"/>
-        
+        <RadioButton x:Name="RadioButtonRegistration" Content="Register here" HorizontalAlignment="Left" Margin="141,51,0,0" VerticalAlignment="Top" FontFamily="Script MT Bold" FontSize="15" BorderBrush="#FFB97165" Foreground="#FF611919" Checked="RadioButton_Checked" IsChecked="True" Width="98"/>
+        <RadioButton x:Name="RadioButtonLogin" Content="Already have an account?" HorizontalAlignment="Left" Margin="113,73,0,0" VerticalAlignment="Top" FontFamily="Script MT Bold" FontSize="15" BorderBrush="#FFB97165" Foreground="#FF611919" Checked="RadioButton_Checked"/>
+        <TextBox x:Name="TextBoxAuthentication" HorizontalAlignment="Left" Height="23" Margin="113,102,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="173" FontFamily="Script MT Bold" FontSize="15" BorderBrush="#FFB97165" Foreground="#FF611919"/>
+        <PasswordBox x:Name="PaswordBoxAuthentication" HorizontalAlignment="Left" Margin="113,130,0,0" VerticalAlignment="Top" Width="171" Password="Password" BorderBrush="#FFB97165" Foreground="#FF611919"/>
+        <Button x:Name="ButtonLetMeIn" Content="Let me in!" HorizontalAlignment="Left" Height="30" Margin="141,160,0,0" VerticalAlignment="Top" Width="98" FontFamily="Script MT Bold" FontSize="18" Panel.ZIndex="10" Background="#FFF3E0BF" Click="ButtonLetMeIn_Click" BorderBrush="#FFB97165" Foreground="#FF611919"/>
+
     </Grid>
 </Window>

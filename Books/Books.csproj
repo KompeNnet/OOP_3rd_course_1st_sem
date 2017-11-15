@@ -84,9 +84,11 @@
     <Compile Include="DataOperation\BookController.cs" />
     <Compile Include="DataOperation\Serialiser.cs" />
     <Compile Include="DataOperation\UserController.cs" />
+    <Compile Include="Model\Author.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\BookShelf.cs" />
     <Compile Include="Model\Review.cs" />
+    <Compile Include="Model\RoleCollection.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="View\BookBase.xaml.cs">
       <DependentUpon>BookBase.xaml</DependentUpon>

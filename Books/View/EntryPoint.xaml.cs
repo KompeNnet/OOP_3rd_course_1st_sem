@@ -19,17 +19,6 @@ namespace Books
         {
             InitializeComponent();
             FillAuthorisationMethodsDict();
-            LoadUserData();
-        }
-
-        private void LoadUserData()
-        {
-            try { UserController.LoadUserData(); }
-            catch (ArgumentNullException e)
-            {
-                MessageBoxResult result = MessageBox.Show("Sorry, smth wrong with " + e.ParamName + ".", "Oups!", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-                if (result == MessageBoxResult.Cancel) Close();
-            }
         }
 
         private void FillAuthorisationMethodsDict()
@@ -62,16 +51,34 @@ namespace Books
 
         private bool Registrate()
         {
-            if (!UserController.AddNewUser(TextBoxRegistration.Text, PaswordBoxRegistration.Password)) return false;
-            OpenMainWindow(UserController.GetUser(TextBoxRegistration.Text));
-            return true;
+            try
+            {
+                if (!UserController.AddNewUser(TextBoxAuthentication.Text, PaswordBoxAuthentication.Password)) return false;
+                OpenMainWindow(UserController.GetUser(TextBoxAuthentication.Text));
+                return true;
+            }
+            catch (ArgumentNullException e)
+            {
+                MessageBoxResult result = MessageBox.Show("Sorry, smth wrong with " + e.ParamName + ".", "Oups!", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                if (result == MessageBoxResult.Cancel) Close();
+                return false;
+            }
         }
 
         private bool LogIn()
         {
-            if (!UserController.CanLogin(TextBoxLogin.Text, PaswordBoxLogin.Password)) return false;
-            OpenMainWindow(UserController.GetUser(TextBoxLogin.Text));
-            return true;
+            try
+            {
+                if (!UserController.AddNewUser(TextBoxAuthentication.Text, PaswordBoxAuthentication.Password)) return false;
+                OpenMainWindow(UserController.GetUser(TextBoxAuthentication.Text));
+                return true;
+            }
+            catch
+            {
+                if (!UserController.CanLogin(TextBoxAuthentication.Text, PaswordBoxAuthentication.Password)) return false;
+                OpenMainWindow(UserController.GetUser(TextBoxAuthentication.Text));
+                return false;
+            }
         }
 
         private void OpenMainWindow(User user)

@@ -7,12 +7,12 @@ namespace Books.Model
         public string Login { get; set; }
         public byte[] Pasword { get; set; }
         public Dictionary<string, BookShelf> ShelfCollection { get; set; }
-        public string Role { get; set; }
+        public int Role { get; set; }
         public string Info { get; set; }
 
         public User() { }
 
-        public User(string login, byte[] pasword, Dictionary<string, BookShelf> shelfCollection, string info = "", string role = "user")
+        public User(string login, byte[] pasword, Dictionary<string, BookShelf> shelfCollection, string info = "", int role = RoleCollection.USER)
         {
             Login = login;
             Pasword = pasword;

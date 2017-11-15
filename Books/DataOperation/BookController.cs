@@ -12,12 +12,19 @@ namespace Books.DataOperation
         private static Dictionary<string, Book> bookBase;
         private const string dataBasePath = "BookBase.mbb";
 
-        public static void LoadBookData()
+        static BookController()
         {
-            if (!CheckDataBaseAccessability()) throw new ArgumentNullException("DataBase");
-            string data = File.ReadAllText(dataBasePath);
-            try { bookBase = Serialiser.Deserialize<Dictionary<string, Book>>(data); }
-            catch { }
+            try
+            {
+                if (!CheckDataBaseAccessability()) throw new ArgumentNullException("DataBase");
+                string data = File.ReadAllText(dataBasePath);
+                try { bookBase = Serialiser.Deserialize<Dictionary<string, Book>>(data); }
+                catch { }
+            }
+            catch (ArgumentNullException e)
+            {
+                MessageBoxResult result = MessageBox.Show("Sorry, smth wrong with " + e.ParamName + ".", "Oups!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public static void SaveBookData()
@@ -37,6 +44,7 @@ namespace Books.DataOperation
             return bookBase[id];
         }
 
+        //public static bool AddNewBook(Book book, int accessState)
         public static bool AddNewBook(Book book)
         {
             if (IsExists(book.Id)) return false;

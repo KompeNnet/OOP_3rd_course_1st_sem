@@ -16,6 +16,7 @@ namespace Books
     public partial class MainWindow : Window
     {
         private User user;
+        private BookShelf selectedShelf;
 
         public MainWindow(User currenntUser)
         {
@@ -43,24 +44,23 @@ namespace Books
         {
             try
             {
-                BookShelf selectedShelf = user.ShelfCollection.ElementAt(((ListView)sender).SelectedIndex).Value;
+                selectedShelf = user.ShelfCollection.ElementAt(((ListView)sender).SelectedIndex).Value;
                 TextBoxBookShelfName.Text = selectedShelf.Name;
             } catch { }
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (TextBoxBookShelfName.Text == "Hi!" || TextBoxBookShelfName.Text == "") return;
+            if (TextBoxBookShelfName.Text == "Hi!" || TextBoxBookShelfName.Text == "" || selectedShelf == null) return;
             if (NewBookshelf(TextBoxBookShelfName.Text)) LoadBookShelfCollection();
         }
         
-        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        private void ButtonSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if (ListViewBookShelfCollection.Items.Count <= 0 || ListViewBookShelfCollection.SelectedItems.Count <= 0) return;
-            if (TextBoxBookShelfName.Text == "") return;
-            BookShelf currentShelf = user.ShelfCollection.ElementAt(ListViewBookShelfCollection.SelectedIndex).Value;
-            user.ShelfCollection.Remove(currentShelf.Name);
-            if (NewBookshelf(TextBoxBookShelfName.Text, currentShelf.Content))
+            if (ListViewBookShelfCollection.Items.Count <= 0 || selectedShelf == null || TextBoxBookShelfName.Text == "") return;
+            selectedShelf = user.ShelfCollection.ElementAt(ListViewBookShelfCollection.SelectedIndex).Value;
+            user.ShelfCollection.Remove(selectedShelf.Name);
+            if (NewBookshelf(TextBoxBookShelfName.Text, selectedShelf.Content))
                 LoadBookShelfCollection();
         }
 

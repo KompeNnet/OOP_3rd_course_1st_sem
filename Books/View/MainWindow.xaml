@@ -22,7 +22,7 @@
         <TextBlock x:Name="TextBlockBookShelfName" Height="21" Margin="10,246,258,0" TextWrapping="Wrap" Text="Bookshelf's name here!" VerticalAlignment="Top" FontSize="16" FontFamily="Script MT Bold" Foreground="#FF611919"/>
         <TextBox Name="TextBoxBookShelfName" HorizontalAlignment="Left" Height="23" Margin="10,272,0,0" TextWrapping="Wrap" Text="Hi!" VerticalAlignment="Top" Width="214" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" SelectionBrush="#FFA84141"/>
         <Button Name="ButtonAdd" Content="Add" HorizontalAlignment="Left" Height="24" Margin="229,272,0,0" VerticalAlignment="Top" Width="77" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonAdd_Click"/>
-        <Button Name="ButtonEdit" Content="Edit" HorizontalAlignment="Left" Height="24" Margin="306,272,0,0" VerticalAlignment="Top" Width="77" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonEdit_Click"/>
+        <Button Name="ButtonSubmit" Content="Submit" HorizontalAlignment="Left" Height="24" Margin="306,272,0,0" VerticalAlignment="Top" Width="77" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonSubmit_Click"/>
         <Button Name="ButtonRemove" Content="Remove" HorizontalAlignment="Left" Height="24" Margin="383,272,0,0" VerticalAlignment="Top" Width="77" FontFamily="Script MT Bold" FontSize="14" BorderBrush="#FFB97165" Foreground="#FF611919" Background="#FFF3E0BF" Click="ButtonRemove_Click"/>
         
     </Grid>

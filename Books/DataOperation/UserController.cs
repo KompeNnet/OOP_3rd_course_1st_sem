@@ -14,12 +14,19 @@ namespace Books.DataOperation
         private static Dictionary<string, User> users;
         private const string dataBasePath = "Base.mbb";
 
-        public static void LoadUserData()
+        static UserController()
         {
-            if (!CheckDataBaseAccessability()) throw new ArgumentNullException("DataBase");
-            string data = File.ReadAllText(dataBasePath);
-            try { users = Serialiser.Deserialize<Dictionary<string, User>>(data); }
-            catch { }
+            try
+            {
+                if (!CheckDataBaseAccessability()) throw new ArgumentNullException("DataBase");
+                string data = File.ReadAllText(dataBasePath);
+                try { users = Serialiser.Deserialize<Dictionary<string, User>>(data); }
+                catch { }
+            }
+            catch (ArgumentNullException e)
+            {
+                MessageBoxResult result = MessageBox.Show("Sorry, smth wrong with " + e.ParamName + ".", "Oups!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public static void SaveUserData()
